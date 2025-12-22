@@ -1,5 +1,5 @@
 import Course from "../models/Course.js";
-import Tag from "../models/tags.js";
+import Category from "../models/Category.js";
 import User from "../models/User.js";
 import { uploadImageToCloudinary} from "../utils/imageUploader.js";
 
@@ -33,11 +33,11 @@ export const craeteCourse = async (req,res) => {
         }
 
         //check given tag is valid or not
-        const tagDetails = await Tag.findById(tag);
-        if(!tagDetails){
+        const categoryDetails = await Category.findById(tag);
+        if(!categoryDetails){
             return res.status(404).json({
                 success:false,
-                message:'tag Details not found'
+                message:'Category Details not found'
             })
         }
 
@@ -47,11 +47,11 @@ export const craeteCourse = async (req,res) => {
         //craete an entry for newcourse
         const newCourse = await Course.create({
             courseName,
-            courseDecription,
+            courseDescription,
             instructor: instructorDetails._id,
             whatYouWillLearn: whatYouWillLearn,
             price,
-            tag:tagDetails._id,
+            category:categoryDetails._id,
             thumbnail:thumbnailImage.secure_url
         })
         
@@ -66,9 +66,9 @@ export const craeteCourse = async (req,res) => {
             {new:true}
         );
 
-        //Update Tag schema
-        await Tag.findByIdAndUpdate(
-            {_id: tagDetails._id},
+        //Update Category schema
+        await Category.findByIdAndUpdate(
+            {_id: categoryDetails._id},
             {
                 $push: {
                     courses: newCourse._id

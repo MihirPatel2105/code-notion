@@ -1,6 +1,6 @@
-import Tag from '../models/tags.js';
+import Category from '../models/Category.js'
 
-export const craeteTag = async(req,res) => {
+export const craeteCategory = async(req,res) => {
     try{
         //Fetch Data
         const {name,description} = req.body;
@@ -14,15 +14,14 @@ export const craeteTag = async(req,res) => {
         }
 
         //create entry in db
-        const tagDetails = await Tag.create({
+        const categoryDetails = await Category.create({
             name:name,
             description:description
         })
-        console.log(tagDetails)
-
+        console.log(categoryDetails)
         return res.status(200).json({
             success:true,
-            message:'Tag Created Successfully'
+            message:'Category Created Successfully'
         })
 
     }
@@ -36,13 +35,13 @@ export const craeteTag = async(req,res) => {
 
 //Show All Tags
 
-export const showAlltags = async (req,res) => {
+export const showAllcategory = async (req,res) => {
     try{
-        const allTags = await Tag.find({}, {name:true, description:true});
+        const allCategories = await Category.find({}, {name:true, description:true});
         res.status(200).json({
             success:true,
-            message:'All tags returned successfully',
-            allTags,
+            message:'All categories returned successfully',
+            allCategories,
         })
     }
     catch(error){

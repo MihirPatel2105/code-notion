@@ -8,9 +8,9 @@ const subSectionSchema = new mongoose.Schema({
         type: String
     },
     description:{
-        tye: String
+        type: String
     },
-    videourl:{
+    videoUrl:{
         type: String
     }
 })
