@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
-import {login,signup,sendotp,changePassword} from ("../controllers/Auth")
-import{resetPasswordToken,resetPassword} from ("../controllers/ResetPassword")
-import { auth } from ("../middlewares/auth")
+import {login,signUp,sendOTP,changePassword} from "../controllers/Auth.js"
+import{resetPasswordToken,resetPassword} from "../controllers/ResetPassword.js"
+import { auth } from "../middlewares/auth.js"
 
 // Routes for Login, Signup, and Authentication
 //Authentication routes
@@ -10,13 +10,13 @@ import { auth } from ("../middlewares/auth")
 router.post("/login", login)
 
 // Route for user signup
-router.post("/signup", signup)
+router.post("/signup", signUp)
 
 // Route for sending OTP to the user's email
-router.post("/sendotp", sendotp)
+router.post("/sendOTP", sendOTP)
 
 // Route for Changing the password
-router.post("/changepassword", auth, changePassword)
+router.post("/changePassword", auth, changePassword)
 
 // Reset Password
 // Route for generating a reset password token

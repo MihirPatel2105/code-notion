@@ -1,8 +1,10 @@
-import { instance } from "../config/razorpay.js";
+import instance from "../config/razorpay.js";
 import Course from "../models/Course.js";
+import CourseProgress from "../models/CourseProgress.js";
 import User from "../models/User.js";
 import mailSender from "../utils/mailSender.js";
-import courseEnrollmentEmail from "../mail/courseEnrollmentEmail.js";
+import { courseEnrollmentEmail } from "../mail/templates/courseEnrollmentEmail.js";
+import { paymentSuccessEmail } from "../mail/templates/paymentSuccessEmail.js";
 import mongoose from "mongoose";
 import crypto from "crypto";
 
@@ -63,7 +65,7 @@ export const capturePayment = async (req, res) => {
 
     try {
         //initiate the payment using razorpay
-        const paymentResponse = await instance.orders.craete(option);
+        const paymentResponse = await instance.orders.create(option);
         console.log(paymentResponse);
 
         return res.status(200).json({
@@ -153,7 +155,7 @@ export const verifySignature = async (req, res) => {
     }
 }
 
-exports.sendPaymentSuccessEmail = async (req, res) => {
+export const sendPaymentSuccessEmail = async (req, res) => {
     const { orderId, paymentId, amount } = req.body
 
     const userId = req.user.id
@@ -177,6 +179,8 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
                 paymentId
             )
         )
+
+        return res.status(200).json({ success: true, message: "Payment success email sent" })
     } catch (error) {
         console.log("error in sending mail", error)
         return res

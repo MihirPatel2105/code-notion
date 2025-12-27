@@ -1,6 +1,6 @@
 import Category from '../models/Category.js'
 
-export const craeteCategory = async(req,res) => {
+export const createCategory = async(req,res) => {
     try{
         //Fetch Data
         const {name,description} = req.body;
@@ -35,7 +35,7 @@ export const craeteCategory = async(req,res) => {
 
 //Show All Tags
 
-export const showAllcategory = async (req,res) => {
+export const showAllCategories = async (req,res) => {
     try{
         const allCategories = await Category.find({}, {name:true, description:true});
         res.status(200).json({

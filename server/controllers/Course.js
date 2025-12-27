@@ -9,7 +9,7 @@ import { convertSecondsToDuration } from "../utils/secToDuration.js";
 
 
 //Create Course handler function
-export const craeteCourse = async (req, res) => {
+export const createCourse = async (req, res) => {
     try {
         //Fetch Data
         const { courseName, courseDescription, whatYouWillLearn, price, tag } = req.body;
@@ -130,7 +130,7 @@ export const getAllCourses = async (req, res) => {
 
 // get course details
 
-export const getCourseDetaisl = async (req, res) => {
+export const getCourseDetails = async (req, res) => {
     try {
         //get data
         const { courseId } = req.body;

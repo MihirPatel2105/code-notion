@@ -3,7 +3,7 @@ import Course from "../models/Course.js";
 import mongoose from "mongoose";
 
 //create rating
-export const craeteRating = async (req,res) => {
+export const createRating = async (req,res) => {
     try{
         //get user id
         const userId = req.user.id;
@@ -12,7 +12,7 @@ export const craeteRating = async (req,res) => {
         // check if user is enrolled in course
         const courseDetails = await Course.findOne(
             {_id : courseId,
-            studentsEnrolled: {$eleMatch: {$eq: userId}} 
+            studentsEnrolled: {$elemMatch: {$eq: userId}} 
             }
         )
 

@@ -1,12 +1,11 @@
 import express from "express";
 const router = express.Router();
-import{createCourse,getAllCourses,getCourseDetails,getFullCourseDetails,editCourse,getInstructorCourses,deleteCourse} from ("../controllers/Course")
-import {showAllCategories,createCategory,categoryPageDetails} from "../controllers/Category"
-import {createSection,updateSection,deleteSection} from "../controllers/Section"
-import {createSubSection,updateSubSection,deleteSubSection} from "../controllers/Subsection"
-import {createRating,getAverageRating,getAllRating} from "../controllers/RatingAndReview"
-import {updateCourseProgress} from "../controllers/courseProgress";
-import { auth, isInstructor, isStudent, isAdmin } from ("../middlewares/auth")
+import{createCourse,getAllCourses,getCourseDetails,getFullCourseDetails,editCourse,getInstructorCourses,deleteCourse} from "../controllers/Course.js"
+import {showAllCategories,createCategory,categoryPageDetails} from "../controllers/Category.js"
+import {createSection,updateSection,deleteSection} from "../controllers/Section.js"
+import {createSubSection,updateSubSection,deleteSubSection} from "../controllers/Subsection.js"
+import {createRating,getAverageRating,getAllRating} from "../controllers/RatingAndReview.js"
+import { auth, isInstructor, isStudent, isAdmin } from "../middlewares/auth.js"
 
 // Course routes
 // Courses can Only be Created by Instructors
@@ -35,8 +34,6 @@ router.post("/editCourse", auth, isInstructor, editCourse)
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 // Delete a Course
 router.delete("/deleteCourse", deleteCourse)
-
-router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 
 //Category routes (Only by Admin)
 router.post("/createCategory", auth, isAdmin, createCategory)

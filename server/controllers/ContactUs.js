@@ -1,5 +1,5 @@
-import { contactUsEmail } from "../mail/contectFormRes";
-import mailSender from "../utils/mailSender";
+import { contactUsEmail } from "../mail/templates/contectFormRes.js";
+import mailSender from "../utils/mailSender.js";
 
 export const contactUsController = async (req,res) => {
     const { email, firstname, lastname, message, phoneNo, countrycode } = req.body

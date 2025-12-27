@@ -82,7 +82,7 @@ export const updateSection = async (req,res) => {
 }
 
 //Delete Section
-export const deleteSetion = async (req,res) => {
+export const deleteSection = async (req,res) => {
     try{
         //Fetch ID - assuming that we are sending id in params
         const {sectionId} = req.params
